@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mauro Iván Almaraz | IT Strategy & Product Operations</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #1f2937; }
+    .section-card { background: white; border-radius: 1.5rem; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.04); padding: 2.5rem; transition: all 0.3s ease; }
+    .section-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+    .profile-photo { border: 8px solid white; box-shadow: 0 20px 40px rgba(77, 114, 212, 0.3); outline: 2px solid #4D72D4; }
+    .floating-element { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
+    .skill-badge { background: #4D72D4; color: white; padding: 0.5rem 1rem; border-radius: 0.75rem; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+    .chart-container { position: relative; height: 380px; width: 100%; }
+    .contact-link { transition: all 0.3s; border-bottom: 2px solid transparent; }
+    .contact-link:hover { color: #4D72D4; border-color: #4D72D4; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <div class="container mx-auto px-4 md:px-12 py-12">
+    
+    <header class="mb-24">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div class="flex-1 text-center lg:text-left">
+          <h1 class="text-6xl md:text-8xl font-black text-[#003f5c] leading-tight mb-4 tracking-tighter uppercase">
+            Mauro Iván Almaraz
+          </h1>
+          <h2 class="text-2xl md:text-4xl font-bold text-[#58508d] mb-8">
+            IT Support Lead <span class="text-gray-300 mx-2">|</span> Product Visionary
+          </h2>
+          <div class="flex flex-wrap justify-center lg:justify-start gap-8 text-lg font-bold text-gray-600">
+            <a href="mailto:mauro.almz@gmail.com" class="contact-link">✉️ mauro.almz@gmail.com</a>
+            <a href="https://linkedin.com/in/mauroalmaraz" target="_blank" class="contact-link">🔗 LinkedIn</a>
+            <span class="flex items-center">📍 Buenos Aires, Argentina</span>
+          </div>
+        </div>
+        <div class="floating-element">
+          <img src="https://i.imgur.com/4T0FhLO.jpeg" 
+               alt="Mauro Iván Almaraz" 
+               class="profile-photo w-64 h-64 md:w-96 md:h-96 object-cover rounded-[3rem]">
+        </div>
+      </div>
+    </header>
+
+    <main class="space-y-16">
+      
+      <section class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div class="lg:col-span-3 section-card">
+          <h3 class="text-3xl font-black text-[#003f5c] mb-6 flex items-center">👤 Perfil Ejecutivo</h3>
+          <p class="text-xl leading-relaxed text-gray-700">
+            Líder estratégico en infraestructura IT con más de una década de experiencia optimizando ecosistemas tecnológicos. Mi enfoque integra el rigor técnico senior con una mentalidad orientada a la <strong>Gestión de Producto</strong>. Como Supervisor en <strong>GrupoTecno</strong> y Fundador de <strong>AlmaExon</strong>, me especializo en liderar equipos de alto rendimiento, diseñar flujos operativos eficientes y garantizar la continuidad del negocio mediante soluciones escalables y visión de mejora continua.
+          </p>
+        </div>
+        <div class="lg:col-span-2 grid grid-cols-1 gap-6">
+          <div class="section-card flex flex-col justify-center items-center text-center border-l-8 border-[#4D72D4] py-10">
+            <span class="text-7xl font-black text-[#4D72D4]">10+</span>
+            <span class="text-sm font-black text-[#58508d] uppercase tracking-widest mt-2">Años de Liderazgo IT</span>
+          </div>
+          <div class="section-card flex flex-col justify-center items-center text-center border-l-8 border-[#26A69A] py-10">
+            <span class="text-7xl font-black text-[#26A69A]">30+</span>
+            <span class="text-sm font-black text-[#58508d] uppercase tracking-widest mt-2">Cuentas Corporativas</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="text-3xl font-black text-center text-[#003f5c] mb-12 uppercase">✨ Competencias Transversales</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="section-card border-t-8 border-[#4D72D4]">
+            <h4 class="text-xl font-black text-[#58508d] mb-4 uppercase tracking-tighter">Stakeholder Management</h4>
+            <p class="text-gray-900 font-black italic text-lg leading-tight uppercase underline decoration-[#4D72D4] decoration-4">Empatía y Orientación al Cliente</p>
+            <p class="text-sm text-gray-500 mt-4 font-bold">Gestión experta de expectativas y traducción de requisitos técnicos a objetivos de negocio.</p>
+          </div>
+          <div class="section-card border-t-8 border-[#4D72D4]">
+            <h4 class="text-xl font-black text-[#58508d] mb-4 uppercase tracking-tighter">Análisis Operativo</h4>
+            <p class="text-gray-900 font-black italic text-lg leading-tight uppercase underline decoration-[#4D72D4] decoration-4">Pensamiento Lógico y Crítico</p>
+            <p class="text-sm text-gray-500 mt-4 font-bold">Capacidad analítica para la resolución de conflictos raíz y diseño de arquitectura de procesos.</p>
+          </div>
+          <div class="section-card border-t-8 border-[#4D72D4]">
+            <h4 class="text-xl font-black text-[#58508d] mb-4 uppercase tracking-tighter">Agilidad Estratégica</h4>
+            <p class="text-gray-900 font-black italic text-lg leading-tight uppercase underline decoration-[#4D72D4] decoration-4">Gestión de Cambio y Resiliencia</p>
+            <p class="text-sm text-gray-500 mt-4 font-bold">Liderazgo efectivo en entornos de alta incertidumbre y rápida evolución tecnológica.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="space-y-12">
+        <h3 class="text-4xl font-black text-center text-[#003f5c] uppercase tracking-tighter">🚀 Experiencia y Liderazgo</h3>
+        
+        <div class="section-card border-l-[16px] border-[#bc5090]">
+          <div class="flex flex-wrap justify-between items-start mb-6">
+            <div>
+              <h4 class="text-3xl font-black text-[#bc5090] uppercase">Supervisor de Soporte | GrupoTecno</h4>
+              <p class="text-xl font-bold text-gray-500">Liderazgo Operativo & Customer Success</p>
+            </div>
+            <span class="bg-[#bc5090] text-white px-6 py-2 rounded-xl font-black text-sm uppercase">2021 – Presente</span>
+          </div>
+          <ul class="space-y-4 text-gray-700 font-bold text-lg">
+            <li class="flex items-start"><span class="mr-3 text-[#bc5090]">●</span> Dirección y mentoría de equipos técnicos multidisciplinarios, coordinando flujos de trabajo nivel 1 a 3.</li>
+            <li class="flex items-start"><span class="mr-3 text-[#bc5090]">●</span> Gestión integral de postventa para cuentas corporativas, garantizando la fidelización mediante excelencia técnica.</li>
+            <li class="flex items-start"><span class="mr-3 text-[#bc5090]">●</span> Optimización del ecosistema de Help Desk, estableciendo KPIs de respuesta y mejorando los SLAs internos.</li>
+            <li class="flex items-start"><span class="mr-3 text-[#bc5090]">●</span> Supervisión de infraestructuras críticas y despliegues tecnológicos a gran escala.</li>
+          </ul>
+        </div>
+
+        <div class="section-card border-l-[16px] border-[#4D72D4]">
+          <div class="flex flex-wrap justify-between items-start mb-6">
+            <div>
+              <h4 class="text-3xl font-black text-[#4D72D4] uppercase">Founder & CEO | AlmaExon</h4>
+              <p class="text-xl font-bold text-gray-500">Soporte IT & Gestión de Activos Críticos</p>
+            </div>
+            <span class="bg-[#4D72D4] text-white px-6 py-2 rounded-xl font-black text-sm uppercase">2017 – Presente</span>
+          </div>
+          <ul class="space-y-4 text-gray-700 font-bold text-lg">
+            <li class="flex items-start"><span class="mr-3 text-[#4D72D4]">●</span> Diseño de modelos de servicio escalables para PyMEs, logrando una operación eficiente basada en mantenimiento preventivo.</li>
+            <li class="flex items-start"><span class="mr-3 text-[#4D72D4]">●</span> Implementación de documentación estandarizada (SOPs) para garantizar la calidad y replicabilidad del soporte técnico.</li>
+            <li class="flex items-start"><span class="mr-3 text-[#4D72D4]">●</span> Creación de la unidad "Tech Cargo", resolviendo la logística de activos tecnológicos con trazabilidad y seguridad total.</li>
+          </ul>
+        </div>
+
+        <div class="section-card border-l-[16px] border-[#26A69A]">
+          <div class="flex flex-wrap justify-between items-start mb-6">
+            <div>
+              <h4 class="text-3xl font-black text-[#26A69A] uppercase">Cofundador | La Plaza Prod & Contravisual</h4>
+              <p class="text-xl font-bold text-gray-500">Dirección Técnica & Producción Ejecutiva</p>
+            </div>
+            <span class="bg-[#26A69A] text-white px-6 py-2 rounded-xl font-black text-sm uppercase">2022 – Presente</span>
+          </div>
+          <ul class="space-y-4 text-gray-700 font-bold text-lg">
+            <li class="flex items-start"><span class="mr-3 text-[#26A69A]">●</span> Orquestación técnica de transmisiones en vivo de alta complejidad mediante flujos vMix/OBS y mezcla de audio digital.</li>
+            <li class="flex items-start"><span class="mr-3 text-[#26A69A]">●</span> Liderazgo en el diseño de identidad visual y estrategias de posicionamiento para marcas y eventos corporativos.</li>
+            <li class="flex items-start"><span class="mr-3 text-[#26A69A]">●</span> Gestión de recursos multimedia y coordinación de personal de campo para producciones en teatros y auditorios.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <h3 class="text-3xl font-black text-[#003f5c] mb-12 uppercase text-center">💻 Technical Stack & Expertise</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="skill-badge text-center">Windows Server & Linux</div>
+          <div class="skill-badge text-center">Virtualización (Proxmox/ESXi)</div>
+          <div class="skill-badge text-center">Networking (VLANs/Routing)</div>
+          <div class="skill-badge text-center">PXE Network Deployment</div>
+          <div class="skill-badge text-center">Hardware Engineering</div>
+          <div class="skill-badge text-center">vMix & OBS Expert</div>
+          <div class="skill-badge text-center">Python & SQL Data</div>
+          <div class="skill-badge text-center">Microsoft 365 / Workspace</div>
+          <div class="skill-badge text-center">ERP & CRM Systems</div>
+          <div class="skill-badge text-center">Sistemas de CCTV & Acceso</div>
+          <div class="skill-badge text-center">Gestión Ágil (Jira/Notion)</div>
+          <div class="skill-badge text-center">Liderazgo de Soporte N3</div>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="section-card">
+          <h3 class="text-2xl font-black text-center text-[#003f5c] mb-8 uppercase">Foco de Gestión</h3>
+          <div class="chart-container"><canvas id="competencyDonutChart"></canvas></div>
+        </div>
+        <div class="section-card">
+          <h3 class="text-2xl font-black text-center text-[#003f5c] mb-8 uppercase">Dominio Técnico</h3>
+          <div class="chart-container"><canvas id="skillsRadarChart"></canvas></div>
+        </div>
+      </section>
+
+      <section class="grid md:grid-cols-2 gap-8">
+        <div class="section-card bg-[#003f5c] text-white">
+          <h4 class="text-2xl font-black mb-6 uppercase">🎓 Formación Académica</h4>
+          <div class="space-y-6">
+            <div>
+              <p class="text-[#26A69A] text-xl font-black">Ingeniería en Informática</p>
+              <p class="font-bold opacity-80">Universidad Nacional de Avellaneda (UNDAV) - En curso</p>
+            </div>
+            <div>
+              <p class="text-[#26A69A] text-xl font-black">Bachiller en Informática</p>
+              <p class="font-bold opacity-80">Colegio John F. Kennedy</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-card border-2 border-[#4D72D4]">
+          <h4 class="text-2xl font-black text-[#003f5c] mb-6 uppercase">📜 Credenciales Clave</h4>
+          <ul class="space-y-4 font-black text-gray-700">
+            <li class="flex items-center"><span class="text-[#4D72D4] mr-2">✅</span> Google IT Support Professional Certificate</li>
+            <li class="flex items-center"><span class="text-[#4D72D4] mr-2">✅</span> IBM: What is Data Science?</li>
+            <li class="flex items-center"><span class="text-[#4D72D4] mr-2">✅</span> Especialista en Soporte Remoto Senior</li>
+            <li class="flex items-center"><span class="text-[#4D72D4] mr-2">✅</span> Gestión de Proyectos & Metodologías Ágiles</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="text-center mt-24 py-16 border-t-8 border-[#4D72D4]">
+      <h3 class="text-4xl font-black text-[#003f5c] mb-6 uppercase tracking-tighter">¿Cómo podemos potenciar tu próximo proyecto?</h3>
+      <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-bold">
+        Estoy listo para aportar mi experiencia técnica y visión operativa a equipos que buscan excelencia y escalabilidad.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-6">
+        <a href="mailto:mauro.almz@gmail.com" 
+           class="bg-[#4D72D4] text-white font-black py-5 px-16 rounded-2xl hover:bg-[#3b5bbd] transition-all shadow-2xl hover:scale-105 text-xl uppercase tracking-widest">
+          Agendar una Charla
+        </a>
+        <a href="https://linkedin.com/in/mauroalmaraz" target="_blank"
+           class="border-4 border-[#4D72D4] text-[#4D72D4] font-black py-5 px-16 rounded-2xl hover:bg-[#4D72D4] hover:text-white transition-all text-xl uppercase tracking-widest">
+          Ver LinkedIn
+        </a>
+      </div>
+      <p class="mt-16 text-gray-400 font-black text-sm uppercase">Mauro Iván Almaraz © 2026 | Villa Centenario, Buenos Aires</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Gráficos Pulidos
+    const ctxDonut = document.getElementById('competencyDonutChart');
+    new Chart(ctxDonut, {
+      type: 'doughnut',
+      data: {
+        labels: ['Gestión IT & Liderazgo', 'Visión Product Owner', 'Estrategia Audiovisual'],
+        datasets: [{
+          data: [45, 35, 20],
+          backgroundColor: ['#4D72D4', '#26A69A', '#bc5090'],
+          borderWidth: 0,
+          hoverOffset: 20
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { font: { weight: 'bold', size: 14 }, padding: 20 } } }
+      }
+    });
+
+    const ctxRadar = document.getElementById('skillsRadarChart');
+    new Chart(ctxRadar, {
+      type: 'radar',
+      data: {
+        labels: ['Infraestructura', 'Hardware', 'Liderazgo', 'Multimedia', 'UX/Customer', 'Gestión Ágil'],
+        datasets: [{
+          label: 'Seniority',
+          data: [9.5, 9, 9.5, 9, 9.5, 8.5],
+          backgroundColor: 'rgba(77, 114, 212, 0.2)',
+          borderColor: '#4D72D4',
+          borderWidth: 4,
+          pointBackgroundColor: '#4D72D4'
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        scales: { r: { suggestedMin: 0, suggestedMax: 10, ticks: { display: false }, pointLabels: { font: { weight: 'bold', size: 13 } } } },
+        plugins: { legend: { display: false } }
+      }
+    });
+  </script>
+</body>
+</html>
