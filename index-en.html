@@ -3,260 +3,808 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mauro Iván Almaraz | IT Strategy & Product Operations</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Mauro Almaraz | IT Support & Automation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Work+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  
   <style>
-    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #1f2937; }
-    .section-card { background: white; border-radius: 1.5rem; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.04); padding: 2.5rem; transition: all 0.3s ease; }
-    .section-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-    .profile-photo { border: 8px solid white; box-shadow: 0 20px 40px rgba(77, 114, 212, 0.3); outline: 2px solid #4D72D4; }
-    .floating-element { animation: float 6s ease-in-out infinite; }
-    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
-    .skill-badge { background: #4D72D4; color: white; padding: 0.5rem 1rem; border-radius: 0.75rem; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
-    .chart-container { position: relative; height: 380px; width: 100%; }
-    .contact-link { transition: all 0.3s; border-bottom: 2px solid transparent; }
-    .contact-link:hover { color: #4D72D4; border-color: #4D72D4; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-main: #0f1419;
+      --bg-card: #1a1f2e;
+      --bg-card-hover: #232938;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --accent-primary: #58a6ff;
+      --accent-green: #3fb950;
+      --accent-orange: #f97316;
+      --accent-purple: #a78bfa;
+      --border-color: #30363d;
+    }
+
+    body {
+      font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-main);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Header */
+    header {
+      padding: 4rem 0 3rem;
+      position: relative;
+    }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .header-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .header-content .role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--accent-green);
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .header-content .intro {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    .contact-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-links a:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 12px;
+      border: 3px solid var(--accent-primary);
+      object-fit: cover;
+      animation: fadeIn 0.8s ease-out 0.4s both;
+      box-shadow: 0 0 30px rgba(88, 166, 255, 0.3);
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--accent-primary);
+      animation: fadeInUp 0.6s ease-out calc(var(--delay) * 0.1s) both;
+    }
+
+    .stat-card:nth-child(2) { --delay: 5; border-color: var(--accent-green); }
+    .stat-card:nth-child(3) { --delay: 6; border-color: var(--accent-orange); }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+    }
+
+    .stat-card:nth-child(2) .stat-value { color: var(--accent-green); }
+    .stat-card:nth-child(3) .stat-value { color: var(--accent-orange); }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Section */
+    section {
+      margin: 4rem 0;
+    }
+
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::before {
+      content: '//';
+      color: var(--text-secondary);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-primary);
+      transform: translateX(4px);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .card-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .card-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--accent-green);
+      background: rgba(63, 185, 80, 0.1);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+    }
+
+    .card-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .card-list li {
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+      color: var(--text-secondary);
+    }
+
+    .card-list li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-primary);
+      font-weight: bold;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-primary);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+      transform-origin: bottom;
+    }
+
+    .project-card:hover::before {
+      transform: scaleY(1);
+    }
+
+    .project-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-primary);
+      transform: translateY(-4px);
+    }
+
+    .project-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tech-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--accent-primary);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* Skills */
+    .skills-section {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .skill-category-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .skill-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--text-primary);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .skill-tag:hover {
+      background: rgba(88, 166, 255, 0.2);
+      border-color: var(--accent-primary);
+      transform: translateY(-2px);
+    }
+
+    .skill-tag.learning {
+      background: rgba(249, 115, 22, 0.1);
+      border-color: rgba(249, 115, 22, 0.3);
+    }
+
+    .skill-tag.learning::after {
+      content: ' 📚';
+      opacity: 0.6;
+    }
+
+    /* Education */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .education-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .education-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-4px);
+    }
+
+    .education-degree {
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-green);
+    }
+
+    .education-institution {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .education-status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent-orange);
+      margin-top: 0.5rem;
+      display: inline-block;
+      background: rgba(249, 115, 22, 0.1);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 4rem 0 2rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 4rem;
+    }
+
+    .cta-section {
+      margin-bottom: 2rem;
+    }
+
+    .cta-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .cta-text {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-size: 1.125rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'JetBrains Mono', monospace;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: var(--bg-main);
+    }
+
+    .btn-primary:hover {
+      background: #79c0ff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(88, 166, 255, 0.3);
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(88, 166, 255, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .footer-note {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-top: 2rem;
+    }
+
+    /* Language Toggle */
+    .lang-toggle {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      z-index: 100;
+    }
+
+    .lang-toggle a {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .lang-toggle a:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .header-content .intro {
+        max-width: 100%;
+      }
+
+      .contact-links {
+        justify-content: center;
+      }
+
+      .profile-image {
+        margin: 0 auto;
+      }
+
+      .lang-toggle {
+        position: static;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+    }
   </style>
 </head>
-<body class="antialiased">
+<body>
 
-  <div class="container mx-auto px-4 md:px-12 py-12">
+  <div class="lang-toggle">
+    <a href="index.html">🇦🇷 Español</a>
+  </div>
+
+  <div class="container">
     
-    <header class="mb-24">
-      <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-        <div class="flex-1 text-center lg:text-left">
-          <h1 class="text-6xl md:text-8xl font-black text-[#003f5c] leading-tight mb-4 tracking-tighter uppercase">
-            Mauro Iván Almaraz
-          </h1>
-          <h2 class="text-2xl md:text-4xl font-bold text-[#58508d] mb-8">
-            IT Support Lead <span class="text-gray-300 mx-2">|</span> Product Visionary
-          </h2>
-          <div class="flex flex-wrap justify-center lg:justify-start gap-8 text-lg font-bold text-gray-600">
-            <a href="mailto:mauro.almz@gmail.com" class="contact-link">✉️ mauro.almz@gmail.com</a>
-            <a href="https://linkedin.com/in/mauroalmaraz" target="_blank" class="contact-link">🔗 LinkedIn</a>
-            <span class="flex items-center">📍 Buenos Aires, Argentina</span>
+    <header>
+      <div class="header-grid">
+        <div class="header-content">
+          <h1>Mauro Almaraz</h1>
+          <div class="role">&gt; IT Support Specialist | Automation & Problem Solver</div>
+          <p class="intro">
+            IT technician with 14 years of hands-on experience in diagnostics, automation, and efficient solutions. 
+            Supervisor at GrupoTecno coordinating teams and operations. Entrepreneur building AlmaExon for IT support. 
+            I primarily work with hardware, Python automation, and also have experience in streaming and audiovisual production.<br><br>
+            <strong>I enjoy automating processes and eliminating repetitive work.</strong>
+          </p>
+          <div class="contact-links">
+            <a href="mailto:mauroalmz@gmail.com">✉️ Email</a>
+            <a href="https://linkedin.com/in/mauroalmaraz" target="_blank">🔗 LinkedIn</a>
+            <a href="https://github.com/mauroalmz" target="_blank">💻 GitHub</a>
+            <span style="border: none; cursor: default;">📍 Buenos Aires, AR</span>
           </div>
         </div>
-        <div class="floating-element">
-          <img src="https://i.imgur.com/4T0FhLO.jpeg" 
-               alt="Mauro Iván Almaraz" 
-               class="profile-photo w-64 h-64 md:w-96 md:h-96 object-cover rounded-[3rem]">
-        </div>
+        <img src="https://i.imgur.com/4T0FhLO.jpeg" alt="Mauro Almaraz" class="profile-image">
       </div>
     </header>
 
-    <main class="space-y-16">
+    <div class="stats">
+      <div class="stat-card" style="--delay: 4">
+        <div class="stat-value">14</div>
+        <div class="stat-label">Years in IT</div>
+      </div>
+      <div class="stat-card" style="--delay: 5">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Years leading teams</div>
+      </div>
+      <div class="stat-card" style="--delay: 6">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Automation projects</div>
+      </div>
+    </div>
+
+    <main>
       
-      <section class="grid grid-cols-1 lg:grid-cols-5 gap-8">
-        <div class="lg:col-span-3 section-card">
-          <h3 class="text-3xl font-black text-[#003f5c] mb-6 flex items-center">👤 Executive Summary</h3>
-          <p class="text-xl leading-relaxed text-gray-700">
-            Strategic IT infrastructure leader with over a decade of experience optimizing tech ecosystems. My profile integrates senior technical expertise with a <strong>Product Management</strong> mindset. As a Supervisor at <strong>GrupoTecno</strong> and Founder of <strong>AlmaExon</strong>, I specialize in leading high-performance teams, designing efficient operational workflows, and ensuring business continuity through scalable solutions and a continuous improvement vision.
-          </p>
-        </div>
-        <div class="lg:col-span-2 grid grid-cols-1 gap-6">
-          <div class="section-card flex flex-col justify-center items-center text-center border-l-8 border-[#4D72D4] py-10">
-            <span class="text-7xl font-black text-[#4D72D4]">10+</span>
-            <span class="text-sm font-black text-[#58508d] uppercase tracking-widest mt-2">Years of IT Leadership</span>
+      <!-- Projects -->
+      <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          
+          <div class="project-card">
+            <div class="project-icon">🧪</div>
+            <h3 class="project-title">Automated PC Testing System</h3>
+            <p class="project-description">
+              PC testing system with real-time control panel. 
+              Results are displayed live from a Flask server while tests are running.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Flask</span>
+              <span class="tech-tag">Multiprocessing</span>
+              <span class="tech-tag">Real-time</span>
+            </div>
           </div>
-          <div class="section-card flex flex-col justify-center items-center text-center border-l-8 border-[#26A69A] py-10">
-            <span class="text-7xl font-black text-[#26A69A]">30+</span>
-            <span class="text-sm font-black text-[#58508d] uppercase tracking-widest mt-2">Corporate Accounts</span>
+
+          <div class="project-card">
+            <div class="project-icon">🏷️</div>
+            <h3 class="project-title">Zebra Label System</h3>
+            <p class="project-description">
+              Program to generate and print EPL format labels for computer production and shipping. 
+              Automates the labeling process at GrupoTecno.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">CustomTkinter</span>
+              <span class="tech-tag">Zebra EPL</span>
+            </div>
           </div>
+
+          <div class="project-card">
+            <div class="project-icon">🤖</div>
+            <h3 class="project-title">Data-Driven Diagnostics</h3>
+            <p class="project-description">
+              Diagnostic tool that uses data analysis techniques to assess PC health and generate detailed system health reports.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Data Analysis</span>
+              <span class="tech-tag">Automated Reports</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-icon">💼</div>
+            <h3 class="project-title">AlmaExon</h3>
+            <p class="project-description">
+              IT support venture with two service lines: AlmaExon (B2B) and Alma by AlmaExon (B2C). 
+              In development: remote diagnostics system, order management, and WhatsApp support prototype.
+            </p>
+            <div class="project-tech">
+              <span class="tech-tag">Entrepreneurship</span>
+              <span class="tech-tag">RustDesk</span>
+              <span class="tech-tag">Functional Prototype</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <section>
-        <h3 class="text-3xl font-black text-center text-[#003f5c] mb-12 uppercase">✨ Core Competencies</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="section-card border-t-8 border-[#4D72D4]">
-            <h4 class="text-xl font-black text-[#58508d] mb-4 uppercase tracking-tighter">Stakeholder Management</h4>
-            <p class="text-gray-900 font-black italic text-lg leading-tight uppercase underline decoration-[#4D72D4] decoration-4">Empathy & Customer Orientation</p>
-            <p class="text-sm text-gray-500 mt-4 font-bold">Expert management of expectations and translation of technical requirements into business objectives.</p>
-          </div>
-          <div class="section-card border-t-8 border-[#4D72D4]">
-            <h4 class="text-xl font-black text-[#58508d] mb-4 uppercase tracking-tighter">Operational Analysis</h4>
-            <p class="text-gray-900 font-black italic text-lg leading-tight uppercase underline decoration-[#4D72D4] decoration-4">Logical & Critical Thinking</p>
-            <p class="text-sm text-gray-500 mt-4 font-bold">Analytical capability for root-cause conflict resolution and process architecture design.</p>
-          </div>
-          <div class="section-card border-t-8 border-[#4D72D4]">
-            <h4 class="text-xl font-black text-[#58508d] mb-4 uppercase tracking-tighter">Strategic Agility</h4>
-            <p class="text-gray-900 font-black italic text-lg leading-tight uppercase underline decoration-[#4D72D4] decoration-4">Change Management & Resilience</p>
-            <p class="text-sm text-gray-500 mt-4 font-bold">Effective leadership in high-uncertainty environments and fast-paced technological evolution.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="space-y-12">
-        <h3 class="text-4xl font-black text-center text-[#003f5c] uppercase tracking-tighter">🚀 Experience & Leadership</h3>
+      <!-- Experience -->
+      <section id="experience">
+        <h2 class="section-title">Experience</h2>
         
-        <div class="section-card border-l-[16px] border-[#bc5090]">
-          <div class="flex flex-wrap justify-between items-start mb-6">
+        <div class="card">
+          <div class="card-header">
             <div>
-              <h4 class="text-3xl font-black text-[#bc5090] uppercase">Support Supervisor | GrupoTecno</h4>
-              <p class="text-xl font-bold text-gray-500">Operational Leadership & Customer Success</p>
+              <h3 class="card-title">Technical Support Supervisor</h3>
+              <p class="card-subtitle">GrupoTecno</p>
             </div>
-            <span class="bg-[#bc5090] text-white px-6 py-2 rounded-xl font-black text-sm uppercase">2021 – Present</span>
+            <span class="card-date">2021 - Present</span>
           </div>
-          <ul class="space-y-4 text-gray-700 font-bold text-lg">
-            <li class="flex items-start"><span class="mr-3 text-[#bc5090]">●</span> Direction and mentorship of multidisciplinary technical teams, coordinating Level 1 to 3 support workflows.</li>
-            <li class="flex items-start"><span class="mr-3 text-[#bc5090]">●</span> End-to-end post-sales management for corporate accounts, ensuring retention through technical excellence.</li>
-            <li class="flex items-start"><span class="mr-3 text-[#bc5090]">●</span> Optimization of the Help Desk ecosystem, establishing response KPIs and improving internal SLAs.</li>
-            <li class="flex items-start"><span class="mr-3 text-[#bc5090]">●</span> Responsible for internal technical training and certifications for the support staff.</li>
+          <ul class="card-list">
+            <li>Coordination of technical teams, warehouse, and work protocols</li>
+            <li>After-sales and logistics management for corporate clients</li>
+            <li>Development of automation tools (testing, labeling, diagnostics)</li>
+            <li>Optimization of support processes and workflows</li>
+            <li>Level 2 and 3 incident resolution</li>
           </ul>
         </div>
 
-        <div class="section-card border-l-[16px] border-[#4D72D4]">
-          <div class="flex flex-wrap justify-between items-start mb-6">
+        <div class="card">
+          <div class="card-header">
             <div>
-              <h4 class="text-3xl font-black text-[#4D72D4] uppercase">Founder & CEO | AlmaExon</h4>
-              <p class="text-xl font-bold text-gray-500">IT Support & Critical Asset Management</p>
+              <h3 class="card-title">Founder</h3>
+              <p class="card-subtitle">AlmaExon</p>
             </div>
-            <span class="bg-[#4D72D4] text-white px-6 py-2 rounded-xl font-black text-sm uppercase">2017 – Present</span>
+            <span class="card-date">2017 - Present</span>
           </div>
-          <ul class="space-y-4 text-gray-700 font-bold text-lg">
-            <li class="flex items-start"><span class="mr-3 text-[#4D72D4]">●</span> Design of scalable service models for SMBs, achieving efficient operations based on preventive maintenance.</li>
-            <li class="flex items-start"><span class="mr-3 text-[#4D72D4]">●</span> Implementation of Standard Operating Procedures (SOPs) to guarantee quality and replicability in technical support.</li>
-            <li class="flex items-start"><span class="mr-3 text-[#4D72D4]">●</span> Development of the "Tech Cargo" unit, providing secure logistics for critical hardware assets with full traceability.</li>
+          <ul class="card-list">
+            <li>IT support for individuals and small businesses</li>
+            <li>Development of B2C brand "Alma by AlmaExon"</li>
+            <li>Creation of remote diagnostics system with customized RustDesk</li>
+            <li>Development of WhatsApp support prototype and order management with Flask + SQLite (testing phase)</li>
+            <li>Order and sales management with Flask + SQLite (functional prototype)</li>
           </ul>
         </div>
 
-        <div class="section-card border-l-[16px] border-[#26A69A]">
-          <div class="flex flex-wrap justify-between items-start mb-6">
+        <div class="card">
+          <div class="card-header">
             <div>
-              <h4 class="text-3xl font-black text-[#26A69A] uppercase">Co-Founder | La Plaza Prod & Contravisual</h4>
-              <p class="text-xl font-bold text-gray-500">Technical Direction & Executive Production</p>
+              <h3 class="card-title">Co-founder & Technical Director</h3>
+              <p class="card-subtitle">La Plaza Prod & Contravisual</p>
             </div>
-            <span class="bg-[#26A69A] text-white px-6 py-2 rounded-xl font-black text-sm uppercase">2022 – Present</span>
+            <span class="card-date">2022 - Present</span>
           </div>
-          <ul class="space-y-4 text-gray-700 font-bold text-lg">
-            <li class="flex items-start"><span class="mr-3 text-[#26A69A]">●</span> Technical orchestration of high-complexity live streams via vMix/OBS workflows and digital audio mixing.</li>
-            <li class="flex items-start"><span class="mr-3 text-[#26A69A]">●</span> Leadership in visual identity design and digital positioning strategies for corporate brands and events.</li>
-            <li class="flex items-start"><span class="mr-3 text-[#26A69A]">●</span> Multimedia resource management and field personnel coordination for theater and auditorium productions.</li>
+          <ul class="card-list">
+            <li>Audiovisual production and live streaming (vMix/OBS)</li>
+            <li>Technical operation of events and broadcasts</li>
+            <li>Video editing and multimedia content creation</li>
+            <li>Technical management of online radio since age 12 (HTML apps, live operation)</li>
           </ul>
+        </div>
+
+      </section>
+
+      <!-- Skills -->
+      <section id="skills">
+        <h2 class="section-title">Technical Stack</h2>
+        <div class="skills-section">
+          
+          <div class="skill-category">
+            <div class="skill-category-title">💪 Strong proficiency</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Hardware & Diagnostics</span>
+              <span class="skill-tag">Windows (installation, optimization)</span>
+              <span class="skill-tag">Remote Support (RustDesk)</span>
+              <span class="skill-tag">Troubleshooting</span>
+              <span class="skill-tag">Team Management</span>
+              <span class="skill-tag">After-sales & Logistics</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-category-title">🔧 Regular use</div>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Flask</span>
+              <span class="skill-tag">Linux (Ubuntu, virtualization)</span>
+              <span class="skill-tag">SQLite</span>
+              <span class="skill-tag">Git / GitHub</span>
+              <span class="skill-tag">Basic networking</span>
+              <span class="skill-tag">vMix / OBS</span>
+              <span class="skill-tag">Video editing</span>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <div class="skill-category-title">📚 Currently learning</div>
+            <div class="skill-tags">
+              <span class="skill-tag learning">Advanced Python</span>
+              <span class="skill-tag learning">IT Automation</span>
+              <span class="skill-tag learning">PXE Network Boot</span>
+              <span class="skill-tag learning">Basic Data Analysis</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      <section class="section-card">
-        <h3 class="text-3xl font-black text-[#003f5c] mb-12 uppercase text-center">💻 Technical Stack & Expertise</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="skill-badge text-center">Windows Server & Linux</div>
-          <div class="skill-badge text-center">Virtualization (Proxmox/ESXi)</div>
-          <div class="skill-badge text-center">Networking (VLANs/Routing)</div>
-          <div class="skill-badge text-center">PXE Network Deployment</div>
-          <div class="skill-badge text-center">Hardware Engineering</div>
-          <div class="skill-badge text-center">vMix & OBS Expert</div>
-          <div class="skill-badge text-center">Python & SQL Data</div>
-          <div class="skill-badge text-center">Microsoft 365 / Workspace</div>
-          <div class="skill-badge text-center">ERP & CRM Systems</div>
-          <div class="skill-badge text-center">CCTV & Access Control</div>
-          <div class="skill-badge text-center">Agile Management (Jira/Notion)</div>
-          <div class="skill-badge text-center">L3 Support Leadership</div>
-        </div>
-      </section>
-
-      <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div class="section-card">
-          <h3 class="text-2xl font-black text-center text-[#003f5c] mb-8 uppercase">Management Focus</h3>
-          <div class="chart-container"><canvas id="competencyDonutChart"></canvas></div>
-        </div>
-        <div class="section-card">
-          <h3 class="text-2xl font-black text-center text-[#003f5c] mb-8 uppercase">Technical Seniority</h3>
-          <div class="chart-container"><canvas id="skillsRadarChart"></canvas></div>
-        </div>
-      </section>
-
-      <section class="grid md:grid-cols-2 gap-8">
-        <div class="section-card bg-[#003f5c] text-white">
-          <h4 class="text-2xl font-black mb-6 uppercase">🎓 Education</h4>
-          <div class="space-y-6">
-            <div>
-              <p class="text-[#26A69A] text-xl font-black">Computer Engineering</p>
-              <p class="font-bold opacity-80">National University of Avellaneda (UNDAV) - Ongoing</p>
-            </div>
-            <div>
-              <p class="text-[#26A69A] text-xl font-black">IT Technician Graduate</p>
-              <p class="font-bold opacity-80">John F. Kennedy College</p>
-            </div>
+      <!-- Education -->
+      <section id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-grid">
+          
+          <div class="education-card">
+            <div class="education-degree">Computer Engineering</div>
+            <div class="education-institution">Universidad Nacional de Avellaneda (UNDAV)</div>
+            <span class="education-status">In progress</span>
           </div>
-        </div>
-        <div class="section-card border-2 border-[#4D72D4]">
-          <h4 class="text-2xl font-black text-[#003f5c] mb-6 uppercase">📜 Key Credentials</h4>
-          <ul class="space-y-4 font-black text-gray-700">
-            <li class="flex items-center"><span class="text-[#4D72D4] mr-2">✅</span> Google IT Support Professional Certificate</li>
-            <li class="flex items-center"><span class="text-[#4D72D4] mr-2">✅</span> IBM: What is Data Science?</li>
-            <li class="flex items-center"><span class="text-[#4D72D4] mr-2">✅</span> Senior Remote Support Specialist</li>
-            <li class="flex items-center"><span class="text-[#4D72D4] mr-2">✅</span> Agile Project Management</li>
-          </ul>
+
+          <div class="education-card">
+            <div class="education-degree">Google IT Support Professional</div>
+            <div class="education-institution">Google / Coursera</div>
+          </div>
+
+          <div class="education-card">
+            <div class="education-degree">High School Diploma in Computer Science</div>
+            <div class="education-institution">John F. Kennedy School</div>
+          </div>
+
         </div>
       </section>
 
     </main>
 
-    <footer class="text-center mt-24 py-16 border-t-8 border-[#4D72D4]">
-      <h3 class="text-4xl font-black text-[#003f5c] mb-6 uppercase tracking-tighter">How can we scale your next project?</h3>
-      <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto font-bold">
-        I am ready to bring my technical expertise and operational vision to teams seeking excellence and scalability.
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-6">
-        <a href="mailto:mauro.almz@gmail.com" 
-           class="bg-[#4D72D4] text-white font-black py-5 px-16 rounded-2xl hover:bg-[#3b5bbd] transition-all shadow-2xl hover:scale-105 text-xl uppercase tracking-widest">
-          Schedule a Chat
-        </a>
-        <a href="https://www.linkedin.com/in/mauroalmaraz/?locale=en_US" target="_blank"
-           class="border-4 border-[#4D72D4] text-[#4D72D4] font-black py-5 px-16 rounded-2xl hover:bg-[#4D72D4] hover:text-white transition-all text-xl uppercase tracking-widest">
-          Visit LinkedIn
-        </a>
+    <footer>
+      <div class="cta-section">
+        <h3 class="cta-title">Let's talk?</h3>
+        <p class="cta-text">
+          I'm looking for opportunities to grow professionally and contribute my technical experience.
+        </p>
+        <div class="cta-buttons">
+          <a href="mailto:mauroalmz@gmail.com" class="btn btn-primary">Contact me</a>
+          <a href="https://linkedin.com/in/mauroalmaraz" target="_blank" class="btn btn-secondary">View LinkedIn</a>
+        </div>
       </div>
-      <p class="mt-16 text-gray-400 font-black text-sm uppercase">Mauro Iván Almaraz © 2026 | Lomas de Zamora, Buenos Aires</p>
+      <p class="footer-note">Mauro Almaraz © 2026 | Lomas de Zamora, Buenos Aires</p>
     </footer>
 
   </div>
 
-  <script>
-    // Visual Charts in English
-    const ctxDonut = document.getElementById('competencyDonutChart');
-    new Chart(ctxDonut, {
-      type: 'doughnut',
-      data: {
-        labels: ['IT Management & Leadership', 'Product Owner Vision', 'Audiovisual Strategy'],
-        datasets: [{
-          data: [45, 35, 20],
-          backgroundColor: ['#4D72D4', '#26A69A', '#bc5090'],
-          borderWidth: 0,
-          hoverOffset: 20
-        }]
-      },
-      options: {
-        maintainAspectRatio: false,
-        plugins: { legend: { position: 'bottom', labels: { font: { weight: 'bold', size: 14 }, padding: 20 } } }
-      }
-    });
-
-    const ctxRadar = document.getElementById('skillsRadarChart');
-    new Chart(ctxRadar, {
-      type: 'radar',
-      data: {
-        labels: ['Infrastructure', 'Hardware', 'Leadership', 'Multimedia', 'UX/Customer', 'Agile Management'],
-        datasets: [{
-          label: 'Seniority Level',
-          data: [9.5, 9, 9.5, 9, 9.5, 8.5],
-          backgroundColor: 'rgba(77, 114, 212, 0.2)',
-          borderColor: '#4D72D4',
-          borderWidth: 4,
-          pointBackgroundColor: '#4D72D4'
-        }]
-      },
-      options: {
-        maintainAspectRatio: false,
-        scales: { r: { suggestedMin: 0, suggestedMax: 10, ticks: { display: false }, pointLabels: { font: { weight: 'bold', size: 13 } } } },
-        plugins: { legend: { display: false } }
-      }
-    });
-  </script>
 </body>
 </html>
